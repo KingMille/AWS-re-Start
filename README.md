@@ -1,19 +1,31 @@
-AWS re/Start Project: Web App with Amazon Aurora Database
-Overview
-This project is part of my AWS re/Start course, where I built a web application integrated with a database using Amazon Aurora. The goal was to create a functional web app hosted on Amazon EC2 that interacts with a database to store and retrieve user data. It was a great opportunity to deepen my understanding of cloud computing, database management, and server configuration.
+Web App Integration with Amazon Aurora - AWS re/Start Project
 
-Project Structure
-EC2 Instance: Set up to host the web application, providing the necessary environment for app deployment.
-Amazon Aurora Database: Used for data storage, allowing the web app to interact with a scalable database instance.
-Web Application: Developed using HTML and PHP, enabling users to add and view data such as names and addresses.
-Software Installed:
-Apache Server: For serving the web app.
-MariaDB: Database server for interacting with Amazon Aurora.
-MySQL CLI: Command-line tool for direct database management.
-Features
-User Input Form: A simple HTML form that allows users to input their name and address, which is then stored in the Amazon Aurora database.
-Data Retrieval: Users can view the stored data directly from the web app interface.
-Database Management: Ability to manage and manipulate the database directly using MySQL commands within the EC2 instance.
-Challenges & Solutions
-Permission Issues: Encountered permission errors while modifying files within the EC2 instance. Resolved these by adjusting user permissions to allow necessary modifications.
-Database Connectivity: Configured the web app to securely connect with the Amazon Aurora database, ensuring smooth data flow between the app and database.
+Description
+This project is a part of my AWS re/Start course, where I developed a web application integrated with an Amazon Aurora database. The project involved setting up an Amazon EC2 instance to host the web app, which allows users to input and retrieve data like names and addresses. The data is then stored in the Amazon Aurora database. 
+
+Well-Architected Framework Pillars
+During the project, several pillars of the AWS Well-Architected Framework were considered:
+
+1. Reliability:  
+   - Utilized an Amazon Aurora cluster automatically managed by AWS, which includes two copies of the database. This setup ensures high availability and data redundancy in case of failures.
+   - The cluster provides automatic failover capability, allowing the application to maintain uptime with minimal interruption if one instance becomes unavailable.
+
+2. Security:  
+   - Configured security groups to restrict traffic, allowing access only from my IP address, preventing unauthorized access and ensuring secure communication between the web app and the database.
+
+3. Cost Optimization:  
+   - Chose a burstable instance class for the Amazon Aurora database instead of a memory-optimized class, since the project requirements were not resource-intensive. This approach reduced costs while maintaining adequate performance.
+   
+Potential Upgrades Based on Well-Architected Framework
+Here are some upgrades that could further improve the project, aligned with AWS Well-Architected Framework principles:
+
+1. Reliability:  
+   - Implement multi-AZ deployment for the Amazon Aurora cluster to ensure that data is replicated across multiple Availability Zones, increasing fault tolerance and availability.
+
+2. Security Enhancements:  
+   - Implement user permissions management within the EC2 instance and database, ensuring that only authorized users have access to modify configurations.
+   - Use AWS Secrets Manager to store and manage database credentials securely, instead of hardcoding them in the application, ensuring enhanced security for sensitive information.
+   
+3. Enhanced Cost Optimization:  
+   - Explore the use of EC2 Spot Instances for non-critical aspects of the web app, reducing hosting costs.
+   - Migrate static web content to Amazon S3 with CloudFront for faster content delivery and reduced load on the EC2 instance, further optimizing costs.
